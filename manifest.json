@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Tesseract - Password Analyzer",
+  "version": "1.0",
+  "description": "An extension to analyze the strength of your passwords in real-time.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/logo16.png",
+      "48": "icons/logo48.png",
+      "128": "icons/logo128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/logo16.png",
+    "48": "icons/logo48.png",
+    "128": "icons/logo128.png"
+  }
+}

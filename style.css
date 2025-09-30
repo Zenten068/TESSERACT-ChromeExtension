@@ -1,0 +1,54 @@
+html, body {
+            width: 540px;
+            height: auto;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-audiowide {
+            font-family: 'Audiowide', sans-serif;
+        }
+        /* New glowing gradient text effect */
+        @keyframes subtle-glow {
+            0%, 100% {
+                text-shadow: 0 0 4px rgba(255, 255, 255, 0.2), 0 0 8px rgba(34, 211, 238, 0.3), 0 0 12px rgba(217, 70, 239, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 8px rgba(255, 255, 255, 0.3), 0 0 16px rgba(34, 211, 238, 0.4), 0 0 24px rgba(217, 70, 239, 0.4);
+            }
+        }
+        .text-glow-gradient {
+            background-image: linear-gradient(to right, #22d3ee, #d946ef); /* cyan-400 to fuchsia-500 */
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .title-glow {
+             animation: subtle-glow 4s ease-in-out infinite;
+        }
+        /* Custom transition for the strength bar segments for a smoother effect */
+        .strength-segment {
+            transition: background-color 0.4s ease-in-out, border-color 0.4s ease-in-out;
+        }
+        /* Animation for the feedback text appearing */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        @keyframes shake {
+          10%, 90% { transform: translate3d(-1px, 0, 0); }
+          20%, 80% { transform: translate3d(2px, 0, 0); }
+          30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+          40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+        .animate-shake {
+            animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+        }
+        .feedback-item:hover {
+            transform: translateX(4px);
+            transition: transform 0.2s ease-out;
+        }

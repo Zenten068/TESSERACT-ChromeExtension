@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesseract - Password Analyzer</title>
+    <!-- Google Fonts for a clean and futuristic look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 p-4">
+
+    <div id="main-content-wrapper" class="w-full max-w-lg bg-white dark:bg-slate-800 rounded-2xl shadow-xl dark:shadow-black/60 p-6">
+        
+        <div class="text-center mb-6">
+            <h1 class="text-4xl font-bold font-audiowide text-glow-gradient title-glow tracking-wider">Tesseract</h1>
+            <p class="text-lg font-audiowide text-glow-gradient title-glow mt-1">by TEAM CUBE</p>
+        </div>
+
+        <div class="text-center">
+            <h1 class="text-2xl md:text-3xl font-bold text-slate-800 dark:text-white">Password Strength Analyzer</h1>
+            <p class="text-slate-500 dark:text-slate-400 mt-2">Get an instant analysis of your password's security.</p>
+        </div>
+
+        <!-- Password Input with Show/Hide Toggle -->
+        <div class="relative mt-8">
+            <input type="password" id="password-input" placeholder="Type your password here..." class="w-full pl-4 pr-12 py-3 bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
+            <button id="toggle-password" class="absolute inset-y-0 right-0 flex items-center px-4 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200" aria-label="Toggle password visibility">
+                <svg id="eye-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye">
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                    <circle cx="12" cy="12" r="3" />
+                </svg>
+                <svg id="eye-closed" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-off" style="display: none;">
+                    <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24" />
+                    <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68" />
+                    <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61" />
+                    <line x1="2" x2="22" y1="2" y2="22" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Segmented Strength Meter -->
+        <div class="mt-5">
+            <div class="flex gap-2">
+                <div id="segment-1" class="strength-segment h-2 w-1/5 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+                <div id="segment-2" class="strength-segment h-2 w-1/5 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+                <div id="segment-3" class="strength-segment h-2 w-1/5 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+                <div id="segment-4" class="strength-segment h-2 w-1/5 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+                <div id="segment-5" class="strength-segment h-2 w-1/5 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+            </div>
+            <p id="strength-text" class="text-sm text-right mt-1.5 font-medium text-slate-500 dark:text-slate-400">&nbsp;</p>
+        </div>
+
+        <!-- Time to Crack, Entropy & Score -->
+        <div id="analysis-box" class="mt-4 p-4 bg-slate-50 dark:bg-slate-900/50 rounded-lg hidden">
+            <div class="flex justify-between items-center">
+                <div class="text-center px-2 flex-1">
+                    <p class="text-xs font-audiowide text-glow-gradient uppercase font-semibold tracking-wider">Time to Crack</p>
+                    <p id="crack-time-text" class="text-lg font-bold text-slate-800 dark:text-white">-</p>
+                </div>
+                <div class="border-l border-slate-200 dark:border-slate-700 h-10"></div>
+                <div class="text-center px-2 flex-1">
+                    <p class="text-xs font-audiowide text-glow-gradient uppercase font-semibold tracking-wider">Entropy</p>
+                    <p id="entropy-text" class="text-lg font-bold text-slate-800 dark:text-white">-</p>
+                </div>
+                 <div class="border-l border-slate-200 dark:border-slate-700 h-10"></div>
+                <div class="text-center px-2 flex-1">
+                    <p class="text-xs font-audiowide text-glow-gradient uppercase font-semibold tracking-wider">Score</p>
+                    <p id="score-text" class="text-lg font-bold text-slate-800 dark:text-white">-</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feedback Section -->
+        <div id="feedback-container" class="mt-5 space-y-2">
+            <!-- Feedback items will be inserted here by JavaScript -->
+        </div>
+
+        <!-- Password Generator -->
+        <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
+            <div class="text-center">
+                <h2 class="text-xl font-bold text-slate-800 dark:text-white">Strong Password Generator</h2>
+                <p class="text-slate-500 dark:text-slate-400 mt-1">Create a secure password from a word you can remember.</p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-2 mt-4">
+                <input type="text" id="generator-input" placeholder="e.g., KRMU, aman12" class="flex-grow w-full px-4 py-3 bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
+                <button id="generate-btn" class="px-5 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-slate-800 transition-all transform hover:scale-105">
+                    Generate
+                </button>
+            </div>
+            <div id="suggestion-container" class="mt-4 space-y-2 hidden">
+                <!-- Suggestions will be populated by JS -->
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="tailwind.js"></script>
+
+</body>
+</html>
+
