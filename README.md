@@ -116,5 +116,3 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 For support, feature requests, or bug reports, please open an issue in the repository.
 
 ---
-
-**Made with ❤️ by TEAM CUBE**
